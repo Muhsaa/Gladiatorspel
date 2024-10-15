@@ -29,61 +29,75 @@ print("Slam is hard to hit but it does massive damage.")
 time.sleep(5)
 clear_terminal()
 
-Hp=int(2)
-Fp=int(2)
+Hp=int(120)
+Fp=int(120)
 dice= [1,2,3,4,5,6,7,8,9,10]
 punchDamageOutput= [20,21,22,23,24,25]
 kickDamageOutput= [25,26,27,28,29,30]
 slamDamageOutput= [31,32,33,34,35,36,37,38,39,40]
-Playerattack= input("Punch, Slam or kick. Choose your attack: ").lower
 def punch():
     punch= random.choice(dice)
-    if punch >=3:
-        Hp or Fp - punchDamageOutput
     return punch
 
 def kick():
     kick= random.choice(dice)
-    if kick >=5:
-        Hp or Fp - kickDamageOutput
-    return
+    return kick
 
 def slam():
     slam = random.choice(dice)
-    if slam >=7:
-        Hp or Fp -slamDamageOutput
     return slam
-
-while Hp >=0 or Fp >= 0:
-    Playerattack = input("Välja din attack. Kast, slag eller spark: ")
+Playerattack= str(input("Punch, Slam or kick. Choose your attack: ")).lower
+lista = [slam,punch,kick]
+fiende = random.choice(lista)
+print("You choose: ",Playerattack)
+print(f"The enemy has chosen: {fiende}")
+if Playerattack == punch():
+    if Playerattack >=3:
+        Fp -= random.choice(punchDamageOutput)
+elif fiende == punch():
+    if fiende >=3:
+        Hp -= random.choice(punchDamageOutput)
+elif Playerattack == kick():
+    if Playerattack >=5:
+        Fp -=random.choice(kickDamageOutput)
+elif fiende == kick():
+    if fiende >=7:
+        Hp -= random.choice(kickDamageOutput)
+elif Playerattack == slam():
+    if Playerattack >=7:
+        Fp -=random.choice(slamDamageOutput)
+elif fiende == slam():
+    if fiende >=7:
+        Hp -=random.choice(slamDamageOutput)
+clear_terminal()
+print(Hp)
+print(Fp)
+while Hp > 0 or Fp > 0:
+    Playerattack = str(input("Punch, Slam or kick. Choose your attack: ")).lower
     
     fiende = random.choice(lista)
     print(f"Fiende har valt: {fiende}")
-    if Playerattack == fiende:
-        print ("Ni valde samma attack och missade")
-    elif (Playerattack == "Kast" and fiende == "Slag"):
-        Fp -= 1
-    elif(Playerattack == "Spark" and fiende =="Kast"):
-        Fp -= 2
-    elif(Playerattack == "Slag" and fiende == "Spark"):
-        Fp -= 1
-    elif (fiende == "Kast" and Playerattack== "Slag"):
-        Hp -= 1
-    elif(fiende == "Spark" and Playerattack =="Kast"):
-        Hp -= 2
-    elif(fiende == "Slag" and Playerattack == "Spark"):
-        Hp -= 1
+    print("You choose: ",Playerattack)
+    if Playerattack == punch():
+        if Playerattack >=3:
+            Fp -= random.choice(punchDamageOutput)
+    elif fiende == punch():
+        if fiende >=3:
+            Hp -= random.choice(punchDamageOutput)
+    elif Playerattack == kick():
+        if Playerattack >=5:
+            Fp -=random.choice(kickDamageOutput)
+    elif fiende == kick():
+        if fiende >=7:
+            Hp -= random.choice(kickDamageOutput)
+    elif Playerattack == slam():
+        if Playerattack >=7:
+            Fp -=random.choice(slamDamageOutput)
+    elif fiende == slam():
+        if fiende >=7:
+            Hp -=random.choice(slamDamageOutput)
+    clear_terminal()
     print(Hp)
     print(Fp)
     if Fp <=0 or Hp<=0:
         break
-
-
-
-
-
-name = input("Vad heter du?")
-while name == "":
-    print("Du har inte skrivit ditt namn")
-    name = input("Vad heter du?")
-    print (name)

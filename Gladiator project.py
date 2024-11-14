@@ -15,35 +15,34 @@ def menu_setup():
     print("2. Exit Game")
     choice = int(input("Choose your number option: "))
     if choice == 1:
-        game_setup()
+            print("Hey there wake up it almost time.")
+            time.sleep(1)
+            print("Do you remember your name?")
+            playerName = input("Enter your name: ")
+            print("Atleast you remember your name.")
+            time.sleep(1)
+            print(playerName, ",we lost the war and got captured and turned into slaves.")
+            time.sleep(1)
+            print("And now we are nothing more then there entertainment as gladiator.")
+            time.sleep(1)
+            print("If we want to live we have to win every battle.")
+            time.sleep(1)
+            print("In the start of every round you can choose your attack.")
+            time.sleep(1)
+            print("Punch, Kick or Slam. Those are the attacks you can use.")
+            time.sleep(1)
+            print("Punch is easier to hit but it dosen't hit as much hard.")
+            time.sleep(1)
+            print("Kick is somewhat hard to hit but it does good damage.")
+            time.sleep(1)
+            print("Slam is hard to hit but it does massive damage.")
+            time.sleep(3)
+            clear_terminal()
+            game_setup()
     elif choice == 2:
         print("Goodbye!")
         exit()
 def game_setup():
-    print("Hey there wake up it almost time.")
-    time.sleep(1)
-    print("Do you remember your name?")
-    playerName = input("Enter your name: ")
-    print("Atleast you remember your name.")
-    time.sleep(1)
-    print(playerName, ",we lost the war and got captured and turned into slaves.")
-    time.sleep(1)
-    print("And now we are nothing more then there entertainment as gladiator.")
-    time.sleep(1)
-    print("If we want to live we have to win every battle.")
-    time.sleep(2)
-    print("In the start of every round you can choose your attack.")
-    time.sleep(1)
-    print("Punch, Kick or Slam. Those are the attacks you can use.")
-    time.sleep(1)
-    print("Punch is easier to hit but it dosen't hit as much hard.")
-    time.sleep(1)
-    print("Kick is somewhat hard to hit but it does good damage.")
-    time.sleep(1)
-    print("Slam is hard to hit but it does massive damage.")
-    time.sleep(3)
-    clear_terminal()
-
     enemy_gladiators = ["hades","hercules","zeus","hephaestus","poseidon"]
     Hp=int(120)
     Fp=int(120)
@@ -111,7 +110,7 @@ def game_setup():
             if Random_Dice() >=7:
                 Hp -=random.choice(slamDamageOutput)
                 print("the enemy grabbed you and slam you to the ground.")
-            elif Random_Dice() >=7:
+            elif Random_Dice() <=7:
                 print("the enemy tried to grab you for slam but he missed.")
         time.sleep(2)
         clear_terminal()
@@ -120,18 +119,19 @@ def game_setup():
         if Fp <=0:
             print("You won the fight.Get ready for the next fight.")
             battle = False
+            won = input("You won the fight.Are you ready for the next fight? (yes/no):")
+            if won == "yes" or won == "y":
+                game_setup()
+            elif won == "no" or won == "n":
+                menu_setup()
         elif Hp <=0:
             print("You lost the fight. You are dead.")
             battle = False
+            lost= input("Would you like to go back to the menu?:(yes|no)")
+            if lost == "yes" or lost == "y":
+                menu_setup()
+            elif lost == "no" or lost == "n":
+                print("Goodbye!")
+                exit()
 
-def menu_setup():
-    print("Welcome to the gladiator game")
-    print("1. Start New Game")
-    print("2. Exit Game")
-    choice = int(input("Choose your number option: "))
-    if choice == 1:
-        game_setup()
-    elif choice == 2:
-        print("Goodbye!")
-        exit()
 menu_setup()
